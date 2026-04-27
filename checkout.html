@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+  <h4>MyShop</h4>
+</nav>
+
+<div class="container"><a href="cart.html">Cart 🛒</a>
+
+<h2>Checkout</h2>
+
+<input id="name" placeholder="Enter Name">
+<input id="address" placeholder="Enter Address">
+
+<h3 id="total"></h3>
+
+<button onclick="placeOrder()">Place Order</button>
+
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let total = 0;
+
+cart.forEach(item=>{
+  total += item.price * item.qty;
+});
+
+document.getElementById("total").innerText = "Total Payment: ₹" + total;
+
+function placeOrder(){
+  let name = document.getElementById("name").value;
+  let address = document.getElementById("address").value;
+
+  if(name === "" || address === ""){
+    alert("Please fill all details");
+    return;
+  }
+
+  localStorage.removeItem("cart");
+  alert("Order placed successfully 🎉");
+  window.location = "index.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyShop</title>
+
+  <!-- Premium Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar px-4">
+  <h4>MyShop</h4>
+
+  <input id="search" placeholder="Search products..." onkeyup="searchProduct()">
+
+  <div class="ms-auto">
+    <a href="index.html">Home</a>
+    <a href="cart.html">Cart 🛒</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h2>Big Deals | Best Prices 🔥</h2>
+</div>
+
+<!-- CATEGORY -->
+<div class="container text-center mt-4">
+  <button onclick="filterCategory('all')">All</button>
+  <button onclick="filterCategory('electronics')">Electronics</button>
+  <button onclick="filterCategory('fashion')">Fashion</button>
+</div>
+
+<!-- PRODUCTS -->
+<div class="container mt-4">
+  <div class="row" id="products"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

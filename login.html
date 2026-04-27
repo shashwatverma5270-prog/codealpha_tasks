@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - MyShop</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .login-box{
+      width:350px;
+      margin:80px auto;
+      background:white;
+      padding:25px;
+      border-radius:15px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.1);
+      text-align:center;
+    }
+
+    .login-box h2{
+      margin-bottom:20px;
+    }
+
+    .login-box input{
+      width:100%;
+      padding:10px;
+      margin:10px 0;
+      border-radius:8px;
+      border:1px solid #ccc;
+    }
+
+    .login-box button{
+      width:100%;
+      background:#2874f0;
+      color:white;
+      padding:10px;
+      border-radius:8px;
+      margin-top:10px;
+    }
+
+    .login-box button:hover{
+      background:#0b5ed7;
+    }
+
+    .toggle{
+      margin-top:10px;
+      cursor:pointer;
+      color:#2874f0;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="login-box">
+  <h2 id="title">Login</h2>
+
+  <input type="email" id="email" placeholder="Enter Email">
+  <input type="password" id="password" placeholder="Enter Password">
+
+  <button onclick="login()">Login</button>
+
+  <p class="toggle" onclick="toggleForm()">New user? Register</p>
+</div>
+
+<script>
+let isLogin = true;
+
+function toggleForm(){
+  isLogin = !isLogin;
+  document.getElementById("title").innerText = isLogin ? "Login" : "Register";
+  document.querySelector("button").innerText = isLogin ? "Login" : "Register";
+  document.querySelector(".toggle").innerText = isLogin ? "New user? Register" : "Already user? Login";
+}
+
+function login(){
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+
+  if(email === "" || password === ""){
+    alert("Fill all fields");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  if(isLogin){
+    let user = users.find(u => u.email === email && u.password === password);
+
+    if(user){
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      alert("Login successful");
+      window.location = "index.html";
+    } else {
+      alert("Invalid credentials");
+    }
+
+  } else {
+    users.push({email, password});
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Registered successfully");
+    toggleForm();
+  }
+}
+</script>
+
+</body>
+</html>
